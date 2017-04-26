@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  nota: MyString
+  primeira_visualizacao: MyString
+  numero_visualizacao: MyString
+  is_publica: MyString
+  status: MyString
+
+two:
+  nome: MyString
+  nota: MyString
+  primeira_visualizacao: MyString
+  numero_visualizacao: MyString
+  is_publica: MyString
+  status: MyString
