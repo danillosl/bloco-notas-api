@@ -2,7 +2,7 @@ class NotasController < ApplicationController
   before_action :set_nota, only: [:show, :update, :destroy]
 
   def index
-    @notas = Nota.all
+    @notas = Nota.where(is_publica: true)
     json_response(@notas)
   end
 
@@ -12,6 +12,11 @@ class NotasController < ApplicationController
   end
 
   def show
+    if @nota.primeira_visualizacao.nil?
+      @nota.update_attributes!(primeira_visualizacao: Time.now)
+    end
+
+    @nota.inc(numero_visualizacao: 1)
     json_response(@nota)
   end
 
@@ -25,10 +30,15 @@ class NotasController < ApplicationController
     head :no_content
   end
 
+  def status
+    json_response(Status::getList)
+  end
+
   private
 
   def nota_params
-    params.permit(:titulo, :nota, :primeira_visualizacao, :numero_visualizacao, :is_publica, :status)
+    params.permit(:titulo, :nota, :is_publica, :status)
+
   end
 
   def set_nota
