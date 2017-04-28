@@ -13,14 +13,14 @@ development:
       # Provide the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - ds161048.mlab.com:61048
+        - <%= "#{ENV['DATABASE']}" %>
       options:   
 
         # The name of the user for authentication.
-        user: 'teste'
+        user: <%= "#{ENV['USERNAME']}" %>
 
         # The password of the user for authentication.
-        password: 'teste'
+        password: <%= "#{ENV['PASSWORD']}" %>
 
   # Configure Mongoid specific options. (optional)
   options:

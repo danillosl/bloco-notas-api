@@ -3,7 +3,8 @@ class NotasController < ApplicationController
 
   def index
     @notas = Nota.where(is_publica: true)
-    json_response(@notas)
+    
+    json_response(@notas.map{|nota| nota.nota = "#{nota.nota[0...15]}..." if nota.nota.length > 15; nota})
   end
 
   def create
@@ -13,7 +14,7 @@ class NotasController < ApplicationController
 
   def show
     if @nota.primeira_visualizacao.nil?
-      @nota.update_attributes!(primeira_visualizacao: Time.now)
+      @nota.update_attributes!(primeira_visualizacao: Time.now.utc.iso8601)
     end
 
     @nota.inc(numero_visualizacao: 1)
@@ -32,6 +33,15 @@ class NotasController < ApplicationController
 
   def status
     json_response(Status::getList)
+  end
+
+  def search
+    if params.has_key?(:search)
+    @notas = Nota.where({ is_publica: true, :$text => { :$search => params.permit(:search)[:search] , :$language => "none" } })
+    else
+    @notas = Nota.where(is_publica: true)
+    end
+    json_response(@notas.map{|nota| nota.nota = "#{nota.nota[0...15]}..." if nota.nota.length > 15; nota})
   end
 
   private

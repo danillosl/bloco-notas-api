@@ -10,4 +10,6 @@ class Nota
   field :is_publica, type: Boolean
   field :status, type: String
 
+  index({titulo: "text", nota: "text"})
+
 end
