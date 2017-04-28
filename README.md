@@ -1,24 +1,19 @@
-# README
+# todo-spring-boot
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+api rest simples usando ruby 2.3 e rails 5.0 e mongodb
 
-Things you may want to cover:
+### Instalação
+Este projeto depende do docker instalado
+```sh
+git clone https://github.com/danillosl/bloco-notas-api.git
+cd bloco-notas-api
+docker build -t bloco-notas-api .
+sudo docker run -it -p 3000:3000 -e DATABASE='databaseUrl:porta' -e USERNAME='usuarioDatabase' -e PASSWORD='senhaDatabase' bloco-notas-api
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+ou
+```sh
+docker pull danillosl/bloco-notas-api
+sudo docker run -it -p 3000:3000 -e DATABASE='databaseUrl:porta' -e USERNAME='usuarioDatabase' -e PASSWORD='senhaDatabase' danillosl/bloco-notas-api
+```
+O projeto deve estar disponivel em: http://localhost:3000 .
