@@ -1,5 +1,5 @@
 FROM ruby:2.3
-MAINTAINER marko@codeship.com
+MAINTAINER danillosl@gmail.com
 
 ENV DATABASE localhost:27017
 ENV USERNAME teste
